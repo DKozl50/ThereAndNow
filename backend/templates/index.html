@@ -26,6 +26,11 @@
 		padding-right: 150px;
 		padding-left: 150px;
 		font-size: 30px;
+		margin-left: 20px;
+	}
+	.date {
+		margin: 20px;
+		margin-right: 10px;
 	}
 
 </style>
@@ -36,10 +41,18 @@
 	    Pluh2020
 	  </div>
 	  <div class="w3-display-middle">
-
 			<form method="POST" action="/">
+				<div class = "w3-display-container">
 		      <input type="hidden" value="6000" name="user_id">
-		      <button class="w3-button w3-round-xxlarge the_button">Find</button>
+					<div class = "w3-display-topright date">
+						<input type="date" name="start_date">
+					</div>
+					<div class = "w3-display-bottomright date">
+						<input type="date" name="end_date">
+					</div>
+					<div class = "separator"> </div>
+		      <button class="w3-button w3-round-xxlarge w3-display-left the_button">Find</button>
+				</div>
 		  </form>
 	  </div>
 	</div>

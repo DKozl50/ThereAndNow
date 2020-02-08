@@ -11,9 +11,11 @@ def get():
 
 @app.route('/', methods = ["POST"])
 def post():
-    user = request.args.get('user_id')
-    if user:
-        print(user)
+    if "user_id" in request.form and "start_date" in request.form and "end_date" in request.form:
+        user_id = request.form["user_id"]
+        start_date = request.form["start_date"]
+        end_date = request.form["end_date"]
+        print(user_id, start_date, end_date)
     return render_template("index.html")
 
 
