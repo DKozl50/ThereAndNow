@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+from json import loads
 
 app = Flask(__name__)
 
@@ -66,6 +67,7 @@ def journey_post():
     data = request.form["data"]
 
     if data:
+        data = loads(data.replace("'", '"'))
         return render_template("journey.html", data = data)
     return redirect("/")
 

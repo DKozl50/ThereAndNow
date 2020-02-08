@@ -6,13 +6,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>Pluh2020</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 </head>
 
 <style>
-	body,h1 {font-family: "Raleway", sans-serif}
+	body,h1 {font-family: "Montserrat", sans-serif}
 	body, html {height: 100%}
 	.the_button {
 		background-color: purple;
@@ -20,6 +20,7 @@
 		padding: 7%;
 		width: 80%;
 		min-width: 100px;
+		font-size: 30px;
 	}
 	.t_button {
 		background-color: purple;
@@ -67,30 +68,30 @@
 	</div>
 
 	<div class = "w3-text-black">
-		{% for journey in data %}
-		<div class="w3-display-container w3-border w3-border-light-green" style = "border-radius: 15px; padding: 2%; margin: 2%">
-			<div class="w3-row">
-				<div class = "w3-col s8 w3-center" style = "font-size: 30px;">
-					{{ journey[0]['name'] }}
-				</div>
+		{% for journey in data[1:] %}
+			<div class="w3-display-container w3-border w3-border-light-green" style = "border-radius: 15px; padding: 2%; margin: 2%">
+				<div class="w3-row">
+					<div class = "w3-col s8 w3-center" style = "font-size: 30px;">
+						{{ journey[0]['name'] }}
+					</div>
 
-				<div class = "w3-col s4 w3-center" style = "font-size: 20px;">
-					{{ journey[0]['dates'] }}
-				</div>
+					<div class = "w3-col s4 w3-center" style = "font-size: 20px;">
+						{{ journey[0]['dates'] }}
+					</div>
 
-				<div class = "w3-col s8 w3-center" style = "font-size: 20px;">
-					{{ journey[0]['cost'] }}
-				</div>
+					<div class = "w3-col s8 w3-center" style = "font-size: 20px;">
+						{{ journey[0]['cost'] }}
+					</div>
 
-				<div class = "w3-col s4 w3-center">
-					<form action = "/journey">
-						<input type="hidden" value="6000" name="user_id">
-						<input type="hidden" value="{{journey}}" name="data">
-						<button class="w3-button w3-round t_button w3-text-white">more </button>
-					</form>
+					<div class = "w3-col s4 w3-center">
+						<form method="POST" action="/journey">
+							<input type="hidden" value="6000" name="user_id">
+							<input type="hidden" value="{{journey}}" name="data">
+							<button class="w3-button w3-round t_button w3-text-white"> more </button>
+						</form>
+					</div>
 				</div>
 			</div>
-		</div>
 		{% endfor %}
 	</div>
 </body>

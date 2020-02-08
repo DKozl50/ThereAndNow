@@ -6,13 +6,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>Pluh2020</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 </head>
 
 <style>
-	body,h1 {font-family: "Raleway", sans-serif}
+	body,h1 {font-family: 'Montserrat', sans-serif}
 	body, html {height: 100%}
 	.the_button {
 		background-color: purple;
@@ -20,6 +20,7 @@
 		padding: 7%;
 		width: 80%;
 		min-width: 100px;
+		font-size: 30px;
 	}
 	.date {
 		padding-top: 1.5%;
@@ -28,7 +29,6 @@
 
 	input {
 		width: 80%;
-		min-width: 300px;
 	}
 </style>
 
@@ -58,11 +58,37 @@
 		  </form>
 		</div>
 	</div>
+	<div class = "w3-text-black">
 
-	<div class="w3-display-container">
+		<div class="w3-row">
+			<div class = "w3-col s3 w3-center" style = "font-size: 30px"> {{ data[0]['name'] }} </div>
+			<div class = "w3-col s2 w3-center"> cost: {{ data[0]['cost'] }} </div>
+			<div class = "w3-col s6 w3-center"> dates: {{ data[0]['dates'] }} </div>
+		</div>
 
+		<div class="w3-row"> <br> </div>
+		<div class="w3-row"> <br> </div>
+
+		<div class="w3-row">
+			<div class = "w3-col s1 w3-left"> <br> </div>
+			<div class = "w3-col s4 w3-left"> Name </div>
+			<div class = "w3-col s2 w3-left"> Type </div>
+			<div class = "w3-col s1 w3-left"> In </div>
+			<div class = "w3-col s1 w3-left"> Out </div>
+		</div>
+		<div class="w3-row"> <br> </div>
+		{% for activity in data[1:] %}
+			<div class="w3-display-container">
+				<div class="w3-row">
+					<div class = "w3-col s1 we-left"> <br> </div>
+					<div class = "w3-col s4 w3-left"> {{ activity['name'] }} </div>
+					<div class = "w3-col s2 w3-left"> {{ activity['type'] }} </div>
+					<div class = "w3-col s1 w3-left"> {{ activity['time_in'] }} </div>
+					<div class = "w3-col s1 w3-left"> {{ activity['time_out'] }} </div>
+				</div>
+			</div>
+		{% endfor %}
 	</div>
-
 </body>
 
 </html>
