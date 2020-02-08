@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Pluh2020</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+<style>
+	body,h1 {font-family: "Raleway", sans-serif}
+	body, html {height: 100%}
+	.the_button {
+		background-color: purple;
+		padding: 15px;
+		padding-right: 90px;
+		padding-left: 90px;
+		font-size: 30px;
+		margin-left: 100px;
+	}
+	.date {
+		margin-right: 100px;
+	}
+
+</style>
+
+<body>
+	<div class="w3-display-container w3-animate-opacity w3-text-white">
+		<div class="w3-display-topleft w3-padding-large w3-xlarge w3-text-light-green">
+			Pluh2020
+		</div>
+		<div class="w3-display-topmiddle">
+			<form method="POST" action="/results">
+				<div class = "w3-display-container" style="padding-top:140px;">
+					<input type="hidden" value="6000" name="user_id">
+					<div class = "w3-display-middle date">
+						<input type="date" name="start_date" value = "{{start_date}}">
+					</div>
+					<div class = "w3-display-right date">
+						<input type="date" name="end_date" value = "{{end_date}}">
+					</div>
+					<div class = "separator"> </div>
+					<button class="w3-button w3-round-xxlarge w3-display-left the_button">Find</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="w3-row" style = "height: 150px"></div>
+
+	<div class="w3-row">
+	  <div class="w3-col s1"><br></div>
+	  <div class="w3-col s10">
+			<div class = "w3-panel w3-border w3-border-light-green w3-center" style = "border-radius: 15px">
+				<div class="w3-display-container">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
