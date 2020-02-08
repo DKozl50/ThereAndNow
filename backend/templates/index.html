@@ -6,11 +6,29 @@
 <head>
 	<meta charset="utf-8">
 	<title>Pluh2020</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 </head>
+
+<style>
+	body,h1 {font-family: "Raleway", sans-serif}
+	body, html {height: 100%}
+	.bgimg {
+	  background-image: url({{ url_for('static', filename='img/travel.jpg') }});
+	  min-height: 100%;
+	  background-position: center;
+	  background-size: cover;
+	}
+	.the_button {
+		background-color: purple;
+		padding: 40px;
+		padding-right: 150px;
+		padding-left: 150px;
+		font-size: 30px;
+	}
+
+</style>
 
 <body>
 	<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
@@ -20,13 +38,9 @@
 	  <div class="w3-display-middle">
 
 			<form method="POST" action="/">
-		      <div class="input-group-prepend">
-		      </div>
 		      <input type="hidden" value="6000" name="user_id">
-
-		      <button class="w3-button w3-block w3-teal">Найти</button>
+		      <button class="w3-button w3-round-xxlarge the_button">Find</button>
 		  </form>
-
 	  </div>
 	</div>
 
