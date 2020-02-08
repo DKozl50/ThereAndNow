@@ -18,6 +18,10 @@ def results_post():
     user_id = request.form["user_id"]
     start_date = request.form["start_date"]
     end_date = request.form["end_date"]
+
+    cost = request.form["end_date"]
+    country = request.form["country"]
+
     if user_id and start_date and end_date:
 
         data = [[{'name' : ' One day in Austria', 'dates' : '08:00 09.02.2020 - 23:00 09.02.2020', 'cost': '6969$'},
@@ -58,7 +62,7 @@ def results_post():
               'time_in': '20:15',
               'time_out': '23:00'}]]
 
-        return render_template("results.html", data = data, start_date = start_date, end_date = end_date)
+        return render_template("results.html", data = data, start_date = start_date, end_date = end_date, cost = cost, country = country)
     return redirect("/")
 
 @app.route('/journey', methods = ["POST"])
