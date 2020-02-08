@@ -3,7 +3,7 @@
 
 ## Technology Stack
 #### Data analysis
-- Pandas
+- одно 
 - другое 
 
 #### Web
