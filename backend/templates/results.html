@@ -19,6 +19,15 @@
 		text-align: center;
 		padding: 7%;
 		width: 80%;
+		min-width: 100px;
+	}
+	.t_button {
+		background-color: purple;
+		text-align: center;
+		padding: 2%;
+		margin: 1%;
+		width: 50%;
+		min-width: 60px;
 	}
 	.date {
 		padding-top: 1.5%;
@@ -31,7 +40,7 @@
 </style>
 
 <body>
-	<div class="w3-display-container w3-animate-opacity w3-text-white" style="height:30%">
+	<div class="w3-display-container w3-animate-opacity w3-text-white" style="height:30%; min-height: 250px;">
 		<div class="w3-display-topleft w3-padding-large w3-xlarge w3-text-light-green">
 			Pluh2020
 		</div>
@@ -40,10 +49,10 @@
 				<input type="hidden" value="6000" name="user_id">
 				<div class="w3-row">
 						<div class = "date w3-col s6 m4 w3-center">
-							<input type="date" name="start_date">
+							<input type="date" name="start_date" value = {{start_date}}>
 						</div>
 						<div class = "date w3-col s6 m4 w3-center">
-							<input type="date" name="end_date">
+							<input type="date" name="end_date" value = {{end_date}}>
 						</div>
 						<div class = "w3-hide-large w3-hide-medium">
 								<div class="w3-col s12"><br></div>
@@ -57,33 +66,33 @@
 		</div>
 	</div>
 
-	<div class = "w3-text-white">
+	<div class = "w3-text-black">
 		{% for journey in data %}
-		<div class="w3-display-container">
+		<div class="w3-display-container w3-border w3-border-light-green" style = "border-radius: 15px; padding: 2%; margin: 2%">
 			<div class="w3-row">
-				<div class = "w3-col s8 w3-center">
-					{{ data[0]['name'] }}
+				<div class = "w3-col s8 w3-center" style = "font-size: 30px;">
+					{{ journey[0]['name'] }}
+				</div>
+
+				<div class = "w3-col s4 w3-center" style = "font-size: 20px;">
+					{{ journey[0]['dates'] }}
+				</div>
+
+				<div class = "w3-col s8 w3-center" style = "font-size: 20px;">
+					{{ journey[0]['cost'] }}
 				</div>
 
 				<div class = "w3-col s4 w3-center">
-					{{ data[0]['dates'] }}
-				</div>
-
-				<div class = "w3-col s4 w3-center">
-					{{ data[0]['cost'] }}
-				</div>
-
-				<div class = "w3-col s8 w3-center">
 					<form action = "/journey">
 						<input type="hidden" value="6000" name="user_id">
-						<button class="w3-button w3-round the_button">more details</button>
+						<input type="hidden" value="{{journey}}" name="data">
+						<button class="w3-button w3-round t_button w3-text-white">more </button>
 					</form>
 				</div>
-
 			</div>
 		</div>
 		{% endfor %}
-	/<div>
+	</div>
 </body>
 
 </html>
