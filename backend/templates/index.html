@@ -22,15 +22,17 @@
 	}
 	.the_button {
 		background-color: purple;
-		padding: 40px;
-		padding-right: 150px;
-		padding-left: 150px;
-		font-size: 30px;
-		margin-left: 20px;
+		text-align: center;
+		padding: 7%;
+		width: 80%;
 	}
 	.date {
-		margin: 20px;
-		margin-right: 10px;
+		padding-top: 1.5%;
+		padding-bottom: 1.5%;
+	}
+
+	input {
+		width: 80%
 	}
 
 </style>
@@ -40,18 +42,27 @@
 	  <div class="w3-display-topleft w3-padding-large w3-xlarge">
 	    Pluh2020
 	  </div>
-	  <div class="w3-display-middle">
+	  <div class="w3-display-middle" style = "width: 100%">
 			<form method="POST" action="/results">
-				<div class = "w3-display-container">
-		      <input type="hidden" value="6000" name="user_id">
-					<div class = "w3-display-topright date">
-						<input type="date" name="start_date">
+				<input type="hidden" value="6000" name="user_id">
+				<div class="w3-row">
+					<div class = "w3-hide-small w3-hide-medium">
+							<div class="w3-col l1"><br></div>
 					</div>
-					<div class = "w3-display-bottomright date">
-						<input type="date" name="end_date">
+				  <div class="w3-col s12 m5 w3-center">
+						<div class = "date">
+							<input type="date" name="start_date">
+						</div>
+						<div class = "date">
+							<input type="date" name="end_date">
+						</div>
 					</div>
-					<div class = "separator"> </div>
-		      <button class="w3-button w3-round-xxlarge w3-display-left the_button">Find</button>
+					<div class = "w3-hide-large w3-hide-medium">
+							<div class="w3-col s12"><br></div>
+					</div>
+					<div class = "w3-col s12 m5" style = "text-align: center;">
+						<button class="w3-button w3-round the_button">Find</button>
+					</div>
 				</div>
 		  </form>
 	  </div>

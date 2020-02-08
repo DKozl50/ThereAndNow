@@ -18,12 +18,56 @@ def results_post():
     start_date = request.form["start_date"]
     end_date = request.form["end_date"]
     if user_id and start_date and end_date:
-        print(user_id, start_date, end_date)
 
-        return render_template("results.html", start_date = start_date, end_date = end_date, results )
+        data = [[{'name' : ' День в Австрии', 'dates' : '08:00 01.01.2020 - 23:00 01.01.2020', 'cost': '6969$'},
+             {'type': 'flight',
+              'name': 'Самолет в Австрию',
+              'time_in': '08:00',
+              'time_out': '11:30'},
+             {'type': 'hotel',
+              'name': 'Заселение в отель Nice Plaza',
+              'time_in': '12:15',
+              'time_out': '13:00'},
+             {'type': 'food',
+              'name': 'Обед в Eat Place 1',
+              'time_in': '13:15',
+              'time_out': '13:50'},
+             {'type': 'sightseing',
+              'name': 'Музей павла семнадцатого',
+              'time_in': '14:00',
+              'time_out': '15:00'},
+             {'type': 'sightseing',
+              'name': 'Парк синий',
+              'time_in': '15:30',
+              'time_out': '17:00'},
+             {'type': 'souvenirs',
+              'name': 'Торговая площадь',
+              'time_in': '17:30',
+              'time_out': '18:00'},
+             {'type': 'food',
+              'name': 'Ужин в Eat Place 14',
+              'time_in': '18:15',
+              'time_out': '19:00'},
+             {'type': 'hotel',
+              'name': 'Выселение из отеля',
+              'time_in': '19:10',
+              'time_out': '19:30'},
+             {'type': 'flight',
+              'name': 'Аэропорт и вылет из австрии',
+              'time_in': '20:15',
+              'time_out': '23:00'}]]
+
+        return render_template("results.html", data = data)
     return redirect("/")
 
+@app.route('/journey', methods = ["POST"])
+def journey_post():
 
+    data = request.form["data"]
+
+    if name, cost, start_end, data:
+        return render_template("journey.html", data = data)
+    return redirect("/")
 
 if __name__ == "__main__":
-    app.run(threaded=True)
+    app.run(threaded=True, host = "0.0.0.0", port = "80")
