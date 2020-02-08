@@ -27,6 +27,14 @@
 		padding-bottom: 1.5%;
 	}
 
+	.border {
+		border-radius: 15px;
+		padding-top: 0.8%;
+		padding-bottom: 0.8%;
+		margin: 1.5%;
+
+	}
+
 	input {
 		width: 80%;
 	}
@@ -72,17 +80,28 @@
 		<div class="w3-row">
 			<div class = "w3-col s1 w3-left"> <br> </div>
 			<div class = "w3-col s4 w3-left"> Name </div>
-			<div class = "w3-col s2 w3-left"> Type </div>
 			<div class = "w3-col s1 w3-left"> In </div>
 			<div class = "w3-col s1 w3-left"> Out </div>
 		</div>
 		<div class="w3-row"> <br> </div>
 		{% for activity in data[1:] %}
-			<div class="w3-display-container">
+			<div class="w3-display-container w3-border
+				{% if activity['type'] == 'flight'%}
+					w3-border-deep-orange
+				{% elif activity['type'] == 'sightseing' %}
+					w3-border-blue
+				{% elif activity['type'] == 'souvenirs' %}
+					w3-border-green
+				{% elif activity['type'] == 'food' %}
+					w3-border-yellow
+				{% elif activity['type'] == 'hotel' %}
+					w3-border-blue-gray
+				{% else %}
+					w3-border-light-green
+				{% endif%} border">
 				<div class="w3-row">
 					<div class = "w3-col s1 we-left"> <br> </div>
 					<div class = "w3-col s4 w3-left"> {{ activity['name'] }} </div>
-					<div class = "w3-col s2 w3-left"> {{ activity['type'] }} </div>
 					<div class = "w3-col s1 w3-left"> {{ activity['time_in'] }} </div>
 					<div class = "w3-col s1 w3-left"> {{ activity['time_out'] }} </div>
 				</div>
