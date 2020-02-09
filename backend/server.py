@@ -211,11 +211,11 @@ def results_post():
     ans = []
     prev = -1
     ans.append({'type':'flight', 'name':'flight to' + country, 'time_in':(str(cur_time)), 'time_out':(str(cur_time + pd.to_timedelta("3:0:0")))})
-    cur_time = "9:0:0"
+    cur_time = pd.to_timedelta("9:0:0")
     ans.append({'type':'hotel', 'name':'check in' + env.iloc[temp]['name'], 'time_in':(str(cur_time)), 'time_out':(str(cur_time + pd.to_timedelta("1:0:0")))})
     for i in k[2]:
         dist = 0
-        time = "0:0:0"
+        time = pd.to_timedelta("0:0:0")
         if prev == -1:
             dist = 1
         else:
