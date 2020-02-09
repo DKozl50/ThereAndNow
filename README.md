@@ -11,6 +11,8 @@
 
 #### Frontend
 - JS
+- HTML
+- Jinja
 
 
 Developed by Pluh team 
