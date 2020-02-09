@@ -22,30 +22,17 @@ class item:
     rating = 0
 
 class node:
-    
+
     def __init__(self, arrive, depart, cash, counry_id):
         self.arrivial_time = arrive
         self.departure_time = depart
         self.cash = cash
         self.country_id = country_id
-        
+
 def radian(x):
     return (x * math.pi) / 180
 
-def distance_from_points(f1, f2, q1, q2):
-    f1 = radian(f1)
-    f2 = radian(f2)
-    q1 = radian(q1)
-    q2 = radian(q2)
-    temp1 = ((math.sin(f2 - f1) / 2)**2) + math.cos(f1) * math.cos(f2) * ((math.sin(q2 - q1) / 2)**2)
-    return 2 * 6371 * math.asin(temp1**0.5)
 
-def distance_from_areas(i1, i2):
-    f1 = table.loc[i1].x
-    f2 = table.loc[i2].x
-    q1 = table.loc[i1].y
-    q2 = table.loc[i2].y
-    return distance_from_points(f1, f2, q1, q2)
 
 def get_time_taxi(dist):
     return dist / 40.0
@@ -70,6 +57,23 @@ def id_to_sights(id):
         t = pd.read_json('Germany')
     t.time = pd.to_timedelta(t.time)
     return t
+
+def distance_from_points(f1, f2, q1, q2):
+    f1 = radian(f1)
+    f2 = radian(f2)
+    q1 = radian(q1)
+    q2 = radian(q2)
+    temp1 = ((math.sin(f2 - f1) / 2)**2) + math.cos(f1) * math.cos(f2) * ((math.sin(q2 - q1) / 2)**2)
+    return 2 * 6371 * math.asin(temp1**0.5)
+
+table = id_to_sights(276)
+
+def distance_from_areas(i1, i2):
+    f1 = table.loc[i1].x
+    f2 = table.loc[i2].x
+    q1 = table.loc[i1].y
+    q2 = table.loc[i2].y
+    return distance_from_points(f1, f2, q1, q2)
 
 def get_random_ans(table, event_cnt):
     cur_rating = 0
@@ -116,7 +120,7 @@ def get_ans(table, event_cnt, max_cash, start_x, start_y):
             else:
                 dist = distance_from_areas(prev, i)
             cur_cnt += 1
-            cur_cash += table.loc[i].cost  
+            cur_cash += table.loc[i].cost
             cur_time += table.loc[i].time
             cur_rating += table.loc[i].rating
             if dist <= 0.8:
@@ -135,8 +139,8 @@ def get_ans(table, event_cnt, max_cash, start_x, start_y):
                     ans_cnt = cur_cnt
             prev = i
     return (ans_cash, ans_time, ans)
-            
-    
+
+
 def get_hotel(env, table):
     curK = 1e9
     num = 0
@@ -166,35 +170,40 @@ def results_get():
 
 @app.route('/results', methods = ["POST"])
 def results_post():
-    
 
-    user_id = request.form.get("user_id")
+
+    user_id = int(request.form.get("user_id"))
     start_date = request.form.get("start_date")
     end_date = request.form.get("end_date")
-    
-    if not(user_id and start_date and end_date): 
+
+
+
+    if not(user_id and start_date and end_date):
         return redirect("/")
 
     date_s = start_date.split('-')
-    date_s[0], date_s[1] =  date_s[1], date_s[0] 
-   
-    
-    start_time = pd.to_datetime('/'.join(date_s)) 
-    
+    date_s[0], date_s[1], date_s[2] = date_s[1], date_s[2], date_s[0]
+
+
+    start_time = pd.to_datetime('/'.join(date_s))
+
     date_s = end_date.split('-')
-    date_s[0], date_s[1] =  date_s[1], date_s[0]
-    
+    date_s[0], date_s[1], date_s[2] = date_s[1], date_s[2], date_s[0]
+
     end_time = pd.to_datetime('/'.join(date_s))
-    
+
     if user_is_new:
-        li_o = [40, 616, 36, 276, 56]
-        id_ = li_o[np.random.randint(5)]
-        
+        li_o = [user_id]
+        id_ = li_o[0]
+
+
     cash = 20000
     country = a[id_]
-    table = id_to_sights(id_)
+
+
     env = env_.get_hotels(id_, start_time, end_time)
     temp = get_hotel(env, table)
+    print(start_time, end_time, temp)
     start_x = env.iloc[temp].x
     start_y = env.iloc[temp].y
     cur_time = pd.to_timedelta("5:30:0")
@@ -216,8 +225,8 @@ def results_post():
         else:
             cur_time += get_time_taxi(dist) * hour
         prev = i
-        ans.append({'type':'sightseeing', 'name': table.loc[i].name, 'time_in':(str(cur_time)), 'time_out':(str(cur_time + table.loc[i].time))})
-        cur_time += table.loc[i].time 
+        ans.append({'type':'sightseeing', 'name': table.loc[i]['name'], 'time_in':(str(cur_time)), 'time_out':(str(cur_time + table.loc[i].time))})
+        cur_time += table.loc[i].time
     #print(ans)
 
     whole_pass = dict()
@@ -225,9 +234,9 @@ def results_post():
     whole_pass['dates'] = str(start_time) + ' - ' + str(start_time + cur_time)
     whole_pass['cost'] = str(k[0])
 
-    data = [[whole_dict] + ans]
+    data = [[whole_pass] + ans]
 
-    return render_template("results.html", data = data, start_date = start_date, end_date = end_date, cost = cost, country = country)
+    return render_template("results.html", data = data, start_date = start_date, end_date = end_date)
 
 
 @app.route('/journey', methods = ["POST"])
