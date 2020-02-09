@@ -15,12 +15,12 @@ def results_get():
 @app.route('/results', methods = ["POST"])
 def results_post():
 
-    user_id = request.form["user_id"]
-    start_date = request.form["start_date"]
-    end_date = request.form["end_date"]
+    user_id = request.form.get("user_id")
+    start_date = request.form.get("start_date")
+    end_date = request.form.get("end_date")
 
-    cost = request.form["end_date"]
-    country = request.form["country"]
+    cost = request.form.get("end_date")
+    country = request.form.get("country")
 
     if user_id and start_date and end_date:
 
@@ -68,7 +68,7 @@ def results_post():
 @app.route('/journey', methods = ["POST"])
 def journey_post():
 
-    data = request.form["data"]
+    data = request.form.get("data")
 
     if data:
         data = loads(data.replace("'", '"'))
