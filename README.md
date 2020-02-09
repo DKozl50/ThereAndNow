@@ -3,8 +3,8 @@
 
 ## Technology Stack
 #### Data analysis
-- одно 
-- другое 
+- TensorFlow
+- Pandas
 
 #### Web
 - там еще что-нибудь
