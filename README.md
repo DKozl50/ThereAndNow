@@ -6,8 +6,11 @@
 - TensorFlow
 - Pandas
 
-#### Web
-- там еще что-нибудь
-- и еще 
+#### Backend
+- Flask
+
+#### Frontend
+- JS
 
 
+Developed by Pluh team 
