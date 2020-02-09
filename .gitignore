@@ -1,3 +1,12 @@
 algos/testing/.ipynb_checkpoints
 algos/.ipynb_checkpoints
 .ipynb_checkpoints
+
+# data 
+algos/checkpoints
+algos/__pycache__
+algos/cities.csv
+algos/data_true.rar
+algos/exp.csv
+algos/user_data.csv
+algos/true_data.csv
