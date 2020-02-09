@@ -6,8 +6,13 @@
 - TensorFlow
 - Pandas
 
-#### Web
-- там еще что-нибудь
-- и еще 
+#### Backend
+- Flask
+
+#### Frontend
+- JS
+- HTML
+- Jinja
 
 
+Developed by Pluh team 
